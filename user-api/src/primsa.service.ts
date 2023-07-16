@@ -1,7 +1,6 @@
 import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient, Role } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { Timestamp } from './stubs/google/protobuf/timestamp';
 import { UserRole } from './stubs/user/message';
 
 @Injectable()
@@ -34,9 +33,6 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
           delete result.password;
         }
         result.id = result.id + '';
-
-        result.createdAt = this.toTimestamp(result.createdAt);
-        result.updatedAt = this.toTimestamp(result.updatedAt);
 
         switch (result.role) {
           case Role.BASIC:
@@ -71,13 +67,5 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     this.$on('beforeExit', async () => {
       await app.close();
     });
-  }
-
-  private toTimestamp(date: Date): Timestamp {
-    const timeMS = date.getTime();
-    return {
-      seconds: timeMS / 1000,
-      nanos: (timeMS % 1000) * 1e6,
-    };
   }
 }

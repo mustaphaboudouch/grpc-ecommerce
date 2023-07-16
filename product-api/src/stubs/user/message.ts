@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { Timestamp } from "../google/protobuf/timestamp";
 
 export const protobufPackage = "user";
 
@@ -14,8 +13,6 @@ export interface User {
   firstName?: string | undefined;
   lastName?: string | undefined;
   email?: string | undefined;
-  createdAt?: Timestamp | undefined;
-  updatedAt?: Timestamp | undefined;
   role?: UserRole | undefined;
 }
 

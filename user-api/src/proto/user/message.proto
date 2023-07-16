@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package user;
 
-import "google/protobuf/timestamp.proto";
-
 enum UserRole {
   USER_ROLE_BASIC = 0;
   USER_ROLE_ADMIN = 1;
@@ -14,11 +12,7 @@ message User {
   string first_name = 2;
   string last_name = 3;
   string email = 4;
-
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
-
-  UserRole role = 7;
+  UserRole role = 5;
 }
 
 message RegisterRequest {

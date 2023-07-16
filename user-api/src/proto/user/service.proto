@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package user;
 
-import "google/protobuf/timestamp.proto";
 import "user/message.proto";
 
 option go_package = "stubs";
