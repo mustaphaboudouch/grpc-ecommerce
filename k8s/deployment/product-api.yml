@@ -33,7 +33,7 @@ spec:
       labels:
         app: product-api
       annotations:
-        autocert.step.sm/name: product-api.grpc-tm
+        autocert.step.sm/name: product-api.grpc-ecommerce
     spec:
       containers:
         - image: mustaphaboudouch/ecommerce-product-api
@@ -65,7 +65,7 @@ spec:
             driver: csi.cert-manager.io
             readOnly: true
             volumeAttributes:
-              csi.cert-manager.io/issuer-name: tm-selfsigned
+              csi.cert-manager.io/issuer-name: ecommerce-selfsigned
               csi.cert-manager.io/dns-names: ${POD_NAME}.${POD_NAMESPACE}
         - name: certs
           secret:

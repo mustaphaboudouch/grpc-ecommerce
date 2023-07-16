@@ -4,11 +4,11 @@ metadata:
   name: user-api-selfsigned-cert
 spec:
   dnsNames:
-    - user-api.grpc-tm
+    - user-api.grpc-ecommerce
     - localhost
   secretName: user-api-cert-tls
   issuerRef:
-    name: tm-selfsigned
+    name: ecommerce-selfsigned
 
 ---
 apiVersion: cert-manager.io/v1
@@ -17,11 +17,11 @@ metadata:
   name: auth-api-selfsigned-cert
 spec:
   dnsNames:
-    - auth-api.grpc-tm
+    - auth-api.grpc-ecommerce
     - localhost
   secretName: auth-api-cert-tls
   issuerRef:
-    name: tm-selfsigned
+    name: ecommerce-selfsigned
 
 ---
 apiVersion: cert-manager.io/v1
@@ -30,8 +30,8 @@ metadata:
   name: product-api-selfsigned-cert
 spec:
   dnsNames:
-    - product-api.grpc-tm
+    - product-api.grpc-ecommerce
     - localhost
   secretName: product-api-cert-tls
   issuerRef:
-    name: tm-selfsigned
+    name: ecommerce-selfsigned

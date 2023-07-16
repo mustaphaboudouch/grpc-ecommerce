@@ -1,4 +1,3 @@
-// import otel from '@opentelemetry/api';
 import { SimpleSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node';
 import process from 'process';
@@ -7,17 +6,8 @@ import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { WinstonInstrumentation } from '@opentelemetry/instrumentation-winston';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
-
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-proto';
-// import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-proto';
-// import {
-//   PeriodicExportingMetricReader,
-//   MeterProvider,
-// } from '@opentelemetry/sdk-metrics';
 import { PrismaInstrumentation } from '@prisma/instrumentation';
-
-// import { diag, DiagConsoleLogger, DiagLogLevel } from '@opentelemetry/api';
-// diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
 
 registerInstrumentations({
   instrumentations: [
@@ -32,23 +22,6 @@ const resource = new Resource({
   [SemanticResourceAttributes.SERVICE_VERSION]: process.env.npm_package_version,
 });
 
-// const metricReader = new PeriodicExportingMetricReader({
-//   exporter: new OTLPMetricExporter({
-//     url: 'http://localhost:4318/v1/metrics',
-//   }),
-
-//   // Default is 60000ms (60 seconds). Set to 3 seconds for demonstrative purposes only.
-//   exportIntervalMillis: 10000,
-// });
-
-// const meterProvider = new MeterProvider({
-//   resource: resource,
-// });
-
-// meterProvider.addMetricReader(metricReader);
-
-// otel.metrics.setGlobalMeterProvider(meterProvider);
-
 const provider = new NodeTracerProvider({
   resource,
 });
@@ -60,7 +33,6 @@ const spanProcessor = new SimpleSpanProcessor(exporter);
 provider.addSpanProcessor(spanProcessor as any);
 provider.register();
 
-// // gracefully shut down the SDK on process exit
 process.on('SIGTERM', () => {
   provider
     .shutdown()

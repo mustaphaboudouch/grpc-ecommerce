@@ -48,7 +48,7 @@ services:
       - AUTH_KEY=/certs/auth-key.pem
       - PORT=4000
       - USER_API_URL=user-api:4000
-      - JWT_SECRET=super-secret
+      - JWT_SECRET=jwt-secret-key
       - USER_CERT=/certs/user.pem
       - USER_KEY=/certs/user-key.pem
       - ROOT_CA=/certs/rootCA.pem

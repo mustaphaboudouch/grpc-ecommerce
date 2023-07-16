@@ -6,5 +6,5 @@
       driver: csi.cert-manager.io
       readOnly: true
       volumeAttributes:
-        csi.cert-manager.io/issuer-name: tm-selfsigned
+        csi.cert-manager.io/issuer-name: ecommerce-selfsigned
         csi.cert-manager.io/dns-names: ${POD_NAME}.${POD_NAMESPACE}

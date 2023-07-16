@@ -21,12 +21,12 @@ spec:
     name: my-ca-issuer
     kind: ClusterIssuer
     group: cert-manager.io
-    
+
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name:  tm-selfsigned
+  name: ecommerce-selfsigned
 spec:
   ca:
     secretName: my-ca-secret
