@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  user-api:
+    image: mustaphaboudouch/ecommerce-user-api
+    environment:
+      - MYSQL_URL=mysql://root:passwd@mariadb:3306/user
+      - insecure=false
+      - USER_CERT=/certs/user.pem
+      - USER_KEY=/certs/user-key.pem
+      - ROOT_CA=/certs/rootCA.pem
+      - PORT=4000
+      - AUTH_API_URL=auth-api:4000
+      - JAEGER_URL=http://tracing:4318/v1/traces
+    volumes:
+      - ../local/certs:/certs
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000/health']
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  product-api:
+    image: mustaphaboudouch/ecommerce-product-api
+    environment:
+      - MONGO_URL=mongodb://root:product@mongo
+      - insecure=false
+      - PRODUCT_CERT=/certs/product.pem
+      - PRODUCT_KEY=/certs/product-key.pem
+      - ROOT_CA=/certs/rootCA.pem
+      - PORT=4000
+      - AUTH_API_URL=auth-api:4000
+      - JAEGER_URL=http://tracing:4318/v1/traces
+    volumes:
+      - ../local/certs:/certs
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000/health']
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  auth-api:
+    image: mustaphaboudouch/ecommerce-auth-api
+    environment:
+      - MYSQL_URL=mysql://root:passwd@mariadb:3306/auth
+      - insecure=false
+      - AUTH_CERT=/certs/auth.pem
+      - AUTH_KEY=/certs/auth-key.pem
+      - PORT=4000
+      - USER_API_URL=user-api:4000
+      - JWT_SECRET=super-secret
+      - USER_CERT=/certs/user.pem
+      - USER_KEY=/certs/user-key.pem
+      - ROOT_CA=/certs/rootCA.pem
+      - JAEGER_URL=http://tracing:4318/v1/traces
+    volumes:
+      - ../local/certs:/certs
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000/health']
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+networks:
+  default:
+    external: true
+    name: grpc-ecommerce_default

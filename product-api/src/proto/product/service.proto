@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package product;
+
+import "product/request.proto";
+
+service ProductService {
+  rpc ListProducts(ListProductsRequest) returns (ListProductsResponse) {}
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {}
+}

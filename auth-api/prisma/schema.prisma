@@ -1,0 +1,17 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["tracing"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+}
+
+model RefreshToken {
+  refreshToken String   @id
+  revoked      Boolean  @default(false)
+  userId       String
+  ip           String
+  createdAt    DateTime @default(now())
+}

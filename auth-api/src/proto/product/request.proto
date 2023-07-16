@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package product;
+
+import "product/message.proto";
+
+message ListProductsRequest {
+  string parent = 1;
+  int32 page_size = 2;
+  string page_token = 3;
+}
+
+message ListProductsResponse {
+  repeated Product products = 1;
+  string next_page_token = 2;
+}
+
+message GetProductRequest {
+  string name = 1;
+}
+
+message GetProductResponse {
+  Product product = 1;
+}
+
+message CreateProductRequest {
+  string parent = 1;
+  string product_id = 2;
+  Product product = 3;
+}
+
+message CreateProductResponse {
+  Product product = 1;
+}
+
+message UpdateProductRequest {
+  Product product = 1;
+}
+
+message UpdateProductResponse {
+  Product product = 1;
+}
+
+message DeleteProductRequest {
+  string name = 1;
+}
+
+message DeleteProductResponse {
+  Product product = 1;
+}
