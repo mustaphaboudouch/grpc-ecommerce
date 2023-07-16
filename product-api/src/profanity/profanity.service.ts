@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from 'src/stubs/product/message';
+import { Category, Product } from 'src/stubs/product/message';
 import { profanity, changeMainLanguage } from 'super-profanity';
 
 interface ProfanityResult {
@@ -21,6 +21,14 @@ export class ProfanityService {
     if (result.isBadWord) throw this.createError(result);
 
     result = this.profanity(product.description || '');
+    if (result.isBadWord) throw this.createError(result);
+  }
+
+  checkCategory(category: Partial<Category>): void {
+    let result: ProfanityResult = this.profanity(category.name || '');
+    if (result.isBadWord) throw this.createError(result);
+
+    result = this.profanity(category.description || '');
     if (result.isBadWord) throw this.createError(result);
   }
 

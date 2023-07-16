@@ -9,4 +9,11 @@ export interface Product {
   price?: number | undefined;
 }
 
+export interface Category {
+  id?: string | undefined;
+  name?: string | undefined;
+  description?: string | undefined;
+  products?: Product[] | undefined;
+}
+
 export const PRODUCT_PACKAGE_NAME = "product";

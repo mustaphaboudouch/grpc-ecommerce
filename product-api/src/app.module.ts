@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { WinstonModule } from 'nest-winston';
 import winstonConfig from './config/winston.config';
 import { ProductModule } from './product/product.module';
+import { CategoryModule } from './category/category.module';
 
 const envSchema = Joi.object({
   MONGO_URL: Joi.string().required(),
@@ -51,6 +52,7 @@ const envSchema = Joi.object({
       useFactory: (cs: ConfigService) => grpcOption(cs),
     }),
     ProductModule,
+    CategoryModule,
     AuthModule,
     HealthModule,
     ProfanityModule,

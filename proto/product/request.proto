@@ -4,6 +4,8 @@ package product;
 
 import "product/message.proto";
 
+// Product
+
 message ListProductsRequest {
   string parent = 1;
   int32 page_size = 2;
@@ -47,4 +49,51 @@ message DeleteProductRequest {
 
 message DeleteProductResponse {
   Product product = 1;
+}
+
+// Category
+
+message ListCategoriesRequest {
+  string parent = 1;
+  int32 page_size = 2;
+  string page_token = 3;
+}
+
+message ListCategoriesResponse {
+  repeated Category categories = 1;
+  string next_page_token = 2;
+}
+
+message GetCategoryRequest {
+  string name = 1;
+}
+
+message GetCategoryResponse {
+  Category category = 1;
+}
+
+message CreateCategoryRequest {
+  string parent = 1;
+  string category_id = 2;
+  Category category = 3;
+}
+
+message CreateCategoryResponse {
+  Category category = 1;
+}
+
+message UpdateCategoryRequest {
+  Category category = 1;
+}
+
+message UpdateCategoryResponse {
+  Category category = 1;
+}
+
+message DeleteCategoryRequest {
+  string name = 1;
+}
+
+message DeleteCategoryResponse {
+  Category category = 1;
 }
