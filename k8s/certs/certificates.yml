@@ -35,15 +35,3 @@ spec:
   secretName: product-api-cert-tls
   issuerRef:
     name: tm-selfsigned
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: front-selfsigned-cert
-spec:
-  dnsNames:
-    - front.grpc-tm
-    - localhost
-  secretName: front-cert-tls
-  issuerRef:
-    name: tm-selfsigned

@@ -136,18 +136,3 @@ dist
 ### Node Patch ###
 # Serverless Webpack directories
 .webpack/
-
-# Optional stylelint cache
-
-# SvelteKit build / generate output
-.svelte-kit
-
-### Svelte ###
-# gitignore template for the SvelteKit, frontend web component framework
-# website: https://kit.svelte.dev/
-
-.svelte-kit/
-package
-
-# Removing certificates
-# **.pem
